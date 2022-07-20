@@ -1,42 +1,62 @@
+<template>
+  <n-layout has-sider>
+    <n-layout-sider class="ui-menu" width="200">
+      123
+    </n-layout-sider>
+    <n-layout>
+      <n-layout-header class="ui-header">
+        321
+      </n-layout-header>
+      <n-layout-content class="ui-main">
+        <router-view></router-view>
+      </n-layout-content>
+    </n-layout>
+  </n-layout>
+</template>
+
 <script setup lang="ts">
-import { setCache } from '@/utils/catch';
+import { setCache } from '@/utils/cache';
+
 setCache('test', '123')
 
-const title = ref('uni-app vue3 ts --Vite');
-const list = ref(['未付款', '待评价', '已付款'])
-const current = ref(1)
-
+onMounted(() => {
+  window['$loading'].start()
+  setTimeout(() => {
+    window['$loading'].finish()
+    window['$dialog'].warning({
+      title: '警告',
+      content: '你确定？',
+      positiveText: '确定',
+      negativeText: '不确定',
+      onPositiveClick: () => {
+        window['$message'].success('确定')
+      },
+      onNegativeClick: () => {
+        window['$message'].error('不确定')
+      }
+    })
+  }, 2000);
+})
 </script>
-<template>
-  <view class="content">
-    <image class="logo" src="/static/svg/LOGO.svg" />
-    <view class="text-area">
-      <text class="">{{ title }}111</text>
-    </view>
-  </view>
-</template>
-<style lang="scss">
-.content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+
+<style lang="scss" scoped>
+.ui-menu {
+  min-height: 100vh;
+  background-color: #001428;
+  color: #fff;
 }
 
-.logo {
-  height: 200rpx;
-  width: 200rpx;
-  margin: 280rpx auto 50rpx;
+.ui-header {
+  height: 50px;
+  border-bottom: 1px solid #ddd;
 }
 
-.text-area {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 60rpx;
+.main-page-box {
+  height: calc(100vh - 50px);
+  overflow: auto;
 }
 
-.title {
-  font-size: 36rpx;
-  color: #8f8f94;
+.ui-main {
+  padding: 10px;
 }
 </style>

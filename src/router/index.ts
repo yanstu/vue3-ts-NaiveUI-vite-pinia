@@ -10,7 +10,26 @@ const routes: Array<RouteRecordRaw> = [
       title: '首页',
     },
   },
-  ...userRoute,
+  {
+    // 404
+    path: '/:pathMatch(.*)',
+    component: () => import('../views/error/notFound.vue'),
+    meta: {
+      auth: false,
+      title: '404',
+    },
+  },
+  {
+    // 无权限
+    path: '/noPermission',
+    name: 'noPermission',
+    component: () => import('../views/error/noPermission.vue'),
+    meta: {
+      auth: false,
+      title: '无权限',
+    },
+  },
+  // ...userRoute,
 ];
 
 const router = createRouter({
@@ -26,6 +45,13 @@ const router = createRouter({
 });
 
 router.beforeEach(async (_to, _from, next) => {
+  // 切换router时，取消pending中的请求
+  if (window.__axiosPromiseArr) {
+    window.__axiosPromiseArr.forEach((ele: any, ind: number) => {
+      ele.cancel();
+      delete window.__axiosPromiseArr[ind];
+    });
+  }
   next();
 });
 
