@@ -10,6 +10,7 @@ declare module '@vue/runtime-core' {
     DialogContent: typeof import('./src/components/naivePlugins/DialogContent/index.vue')['default']
     LoadingContent: typeof import('./src/components/naivePlugins/LoadingContent/index.vue')['default']
     MessageContent: typeof import('./src/components/naivePlugins/MessageContent/index.vue')['default']
+    NaivePlugins: typeof import('./src/components/naivePlugins/index.vue')['default']
     NLayout: typeof import('naive-ui')['NLayout']
     NLayoutContent: typeof import('naive-ui')['NLayoutContent']
     NLayoutHeader: typeof import('naive-ui')['NLayoutHeader']

@@ -56,11 +56,15 @@ export default ({ mode }: ConfigEnv): UserConfig => {
       },
     },
     build: {
+      // 打包文件夹名称
+      outDir: 'dist',
       minify: 'terser',
       terserOptions: {
         compress: {
           // 发布时删除 console
           // drop_console: true,
+          // 发布后禁用 debug
+          // drop_debugger: true,
         },
       },
     },
