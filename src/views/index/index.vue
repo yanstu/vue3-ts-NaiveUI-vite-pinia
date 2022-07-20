@@ -21,9 +21,10 @@ setCache('test', '123')
 
 onMounted(() => {
   window['$loading'].start()
+
   setTimeout(() => {
     window['$loading'].finish()
-    window['$dialog'].warning({
+    /*window['$dialog'].warning({
       title: '警告',
       content: '你确定？',
       positiveText: '确定',
@@ -34,7 +35,7 @@ onMounted(() => {
       onNegativeClick: () => {
         window['$message'].error('不确定')
       }
-    })
+    })*/
   }, 2000);
 })
 </script>

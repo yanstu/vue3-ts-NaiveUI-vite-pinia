@@ -18,7 +18,7 @@ export default ({ mode }: ConfigEnv): UserConfig => {
       VueSetupExtend(),
       AutoImport({
         imports: ['vue'], // 自动导入vue相关函数
-        dts: 'src/auto-import.d.ts', // 生成 `auto-import.d.ts` 全局声明
+        dts: '@types/auto-import.d.ts', // 生成 `auto-import.d.ts` 全局声明
       }),
       Components({
         resolvers: [NaiveUiResolver()],
