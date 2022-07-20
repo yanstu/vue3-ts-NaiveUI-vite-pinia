@@ -2,7 +2,7 @@ import pkg from '../../package.json';
 
 // Generate cache key according to version
 export function getPkgVersion() {
-  return `${`__${pkg.version}`}__`.toUpperCase();
+  return `${`_${pkg.version}`}_`.toUpperCase();
 }
 
 /**

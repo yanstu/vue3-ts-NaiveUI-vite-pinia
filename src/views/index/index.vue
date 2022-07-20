@@ -5,10 +5,12 @@
     </n-layout-sider>
     <n-layout>
       <n-layout-header class="ui-header">
-        321
+        <n-icon size="40" color="#0e7a0d">
+          <helpOutline-icon></helpOutline-icon>
+        </n-icon>
       </n-layout-header>
       <n-layout-content class="ui-main">
-        <router-view></router-view>
+        <neirong></neirong>
       </n-layout-content>
     </n-layout>
   </n-layout>
@@ -16,6 +18,9 @@
 
 <script setup lang="ts">
 import { setCache } from '@/utils/cache';
+import neirong from './components/main.vue'
+import { icon } from '@/components/xicons'
+const { HelpOutlineIcon } = icon.ionicons5
 
 setCache('test', '123')
 
@@ -38,6 +43,7 @@ onMounted(() => {
     })*/
   }, 2000);
 })
+
 </script>
 
 <style lang="scss" scoped>

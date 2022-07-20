@@ -6,6 +6,9 @@
 
 <script setup lang="ts">
 import { NaivePlugins } from '@/components/naivePlugins'
+
+onMounted(() => {
+})
 </script>
 
 <style>
