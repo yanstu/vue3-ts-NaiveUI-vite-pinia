@@ -25,10 +25,10 @@ const { HelpOutlineIcon } = icon.ionicons5
 setCache('test', '123')
 
 onMounted(() => {
-  window['$loading'].start()
+  window.$loading.start()
 
   setTimeout(() => {
-    window['$loading'].finish()
+    window.$loading.finish()
     /*window['$dialog'].warning({
       title: '警告',
       content: '你确定？',

@@ -1,5 +1,5 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router';
-import { userRoute } from './user';
+import { errorRoute } from './error';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -10,26 +10,7 @@ const routes: Array<RouteRecordRaw> = [
       title: '首页',
     },
   },
-  {
-    // 404
-    path: '/:pathMatch(.*)',
-    component: () => import('../views/error/notFound.vue'),
-    meta: {
-      auth: false,
-      title: '404',
-    },
-  },
-  {
-    // 无权限
-    path: '/noPermission',
-    name: 'noPermission',
-    component: () => import('../views/error/noPermission.vue'),
-    meta: {
-      auth: false,
-      title: '无权限',
-    },
-  },
-  // ...userRoute,
+  ...errorRoute,
 ];
 
 const router = createRouter({
