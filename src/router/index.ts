@@ -1,5 +1,7 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router';
-import { errorRoute } from './error';
+import { createRouterGuards } from './router-guards';
+import { errorRoute } from './error.router';
+import { App } from 'vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -14,8 +16,9 @@ const routes: Array<RouteRecordRaw> = [
 ];
 
 const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHashHistory(''),
   routes,
+  // 不保存滚动条所在位置
   scrollBehavior(to, from, savedPosition) {
     if (savedPosition) {
       return savedPosition;
@@ -25,17 +28,10 @@ const router = createRouter({
   },
 });
 
-router.beforeEach(async (_to, _from, next) => {
-  // 切换router时，取消pending中的请求
-  if (window.__axiosPromiseArr) {
-    window.__axiosPromiseArr.forEach((ele: any, ind: number) => {
-      ele.cancel();
-      delete window.__axiosPromiseArr[ind];
-    });
-  }
-  next();
-});
-
-router.afterEach((_to) => {});
+export function setupRouter(app: App) {
+  app.use(router);
+  // 创建路由守卫
+  createRouterGuards(router);
+}
 
 export default router;
